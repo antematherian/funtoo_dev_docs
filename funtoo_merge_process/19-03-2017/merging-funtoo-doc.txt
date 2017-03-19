@@ -1,0 +1,29 @@
+
+Skipping the condescending, useless global view, here's the funtoo
+way of merging the main portage tree
+
+One note: All line numbers refer to the snapshoted files included with
+the documents. Their respective copyright stays with the original authors
+which can be checked here http://git.funtoo.org/funtoo-overlay
+
+A bit of history:
+
+The portage tree usually residing in the /usr/portage folder
+(set to that value in /etc/portage/repos.conf/gentoo) was
+originally distributed through rsync. This is important because
+in those days the manifest files distributed with the ebuilds
+checksumed the ebuilds themself: if you encounter an ebuild
+that checksums the content of the files folder in addition to
+the tarballs present in /usr/portage/distfiles, you're reading
+the "fat" manifests required because rsync inherently isn't a 
+safe protocol. With git and its system of cryptographic hashes
+the need for checksuming the portage tree itself is redundant.
+Therefore, both Gentoo and Funtoo use thin-manifests. 
+
+Funtoo first switched to distributing the portage tree through
+git: if you think that a slimer git-tree-to-git-tree merge script
+can be written, keep in mind that it originally was meant to work
+with a different protocol. You can see what protocol
+is active by looking at the gentoo-staging merge script snapshoted
+from http://git.funtoo.org/funtoo-overlay/tree/funtoo/scripts and provided
+together with this document as merge-gentoo-staging.py. 
